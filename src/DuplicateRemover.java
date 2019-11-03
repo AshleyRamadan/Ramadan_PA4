@@ -21,14 +21,28 @@ public class DuplicateRemover
 
     public void write(File outputWords) throws IOException
     {
-        Writer newFile = new FileWriter(outputWords, false);
-        int length = uniqueWords.size();
-        ArrayList<String> setToList = new ArrayList<String>(uniqueWords);
+        //File temp = new File("outputWords.txt");
 
-        for(int i = 0; i < length; i++)
-        {
-            newFile.write(setToList.get(i));
+        if(outputWords.createNewFile()) {
+            Writer newFile = new FileWriter(outputWords, false);
+            int length = uniqueWords.size();
+            ArrayList<String> setToList = new ArrayList<String>(uniqueWords);
+
+            for (int i = 0; i < length; i++) {
+                newFile.write(setToList.get(i));
+            }
+            newFile.close();
         }
-        newFile.close();
+        else
+        {
+            Writer newFile = new FileWriter(outputWords, false);
+            int length = uniqueWords.size();
+            ArrayList<String> setToList = new ArrayList<String>(uniqueWords);
+
+            for (int i = 0; i < length; i++) {
+                newFile.write(setToList.get(i));
+            }
+            newFile.close();
+        }
     }
 }

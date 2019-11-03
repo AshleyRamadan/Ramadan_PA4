@@ -28,15 +28,30 @@ public class DuplicateCounter
 
     public void write(File outputFile) throws IOException
     {
-        Writer newFile = new FileWriter(outputFile, false);
-        int length = wordCount.size();
-        //ArrayList<String> setToList = new ArrayList<String>(wordCount);
-        //int i = 0;
-        for (HashMap.Entry<String,Integer> entry : wordCount.entrySet()) {
-            String key = entry.getKey();
-            int value = entry.getValue();
-            newFile.write(key + " = " + value);
+        if(outputFile.createNewFile()) {
+            Writer newFile = new FileWriter(outputFile, false);
+            int length = wordCount.size();
+            //ArrayList<String> setToList = new ArrayList<String>(wordCount);
+            //int i = 0;
+            for (HashMap.Entry<String, Integer> entry : wordCount.entrySet()) {
+                String key = entry.getKey();
+                int value = entry.getValue();
+                newFile.write(key + " = " + value);
+            }
+            newFile.close();
         }
-        newFile.close();
+        else
+        {
+            Writer newFile = new FileWriter(outputFile, false);
+            int length = wordCount.size();
+            //ArrayList<String> setToList = new ArrayList<String>(wordCount);
+            //int i = 0;
+            for (HashMap.Entry<String, Integer> entry : wordCount.entrySet()) {
+                String key = entry.getKey();
+                int value = entry.getValue();
+                newFile.write(key + " = " + value);
+            }
+            newFile.close();
+        }
     }
 }
